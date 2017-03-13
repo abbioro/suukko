@@ -10,6 +10,7 @@ Suukko - a KISS static blog generator
 
 1. Write your "about" page in `about.md`
 2. Put your name in `static/header.html`
+   - Don't change "TITLE" here, it will be replaced during generation
 3. Put any additional links in `static/footer.html`
 4. Customize `static/style.css` to your preference
 5. Run `make build` or simply `make` to build the site
