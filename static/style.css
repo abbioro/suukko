@@ -1,0 +1,47 @@
+html {
+    overflow-y: scroll;
+}
+
+body {
+    max-width: 600px;
+    margin: 48px auto;
+    padding: 0 1em;
+    font-family: serif;
+}
+
+.title a {
+    color: #a00;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.title a:hover {
+    text-decoration: underline;
+}
+
+.index-entry {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.index-entry span {
+    font-family: monospace;
+}
+
+footer, footer a {
+    color: #666;
+    font-size: 12px;
+    font-family: sans-serif;
+    text-decoration: none;
+    line-height: 1.5em;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+li {
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+}
