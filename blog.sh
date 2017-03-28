@@ -2,6 +2,8 @@
 # Copyright (c) 2017 Joonatan O'Rourke
 # Static blog generator written in bash.
 
+set -e
+
 MARKDOWN=markdown
 
 shopt -s globstar
@@ -10,14 +12,14 @@ shopt -s globstar
 # characters to only give us the name.
 get_title() {
     title=$(sed -n 1p "$1")
-    echo -n ${title:2}
+    echo -n "${title:2}"
 }
 
 # The title is the second line in the post. Strip all asterisks
 # (emphasis markers).
 get_date() {
     date=$(sed -n 2p "$1")
-    echo -n $(echo $date | sed 's/\*//g')
+    echo -n "$(echo "$date" | sed 's/\*//g')"
 }
 
 # Sets the title of the page. First arg is the filename, second is the
@@ -29,21 +31,21 @@ set_title() {
 # Add an index entry for a filename (first arg).
 add_index_entry() {
     # Github Pages has ignoring extensions built-in
-    noext="$(dirname $filename)/$(basename $filename .html)"
+    noext="$(dirname "$filename")/$(basename "$filename" .html)"
     echo "<div class=\"index-entry\">" >> index.html
-    echo "<span>$(get_date $1)</span> -" >> index.html
-    echo "<a href=\"$noext\">$(get_title $1)</a>" >> index.html
+    echo "<span>$(get_date "$1")</span> -" >> index.html
+    echo "<a href=\"$noext\">$(get_title "$1")</a>" >> index.html
     echo "</div>" >> index.html
 }
 
 # Generate a page for a post. Also appends a link to the index.
 generate_page() {
     echo "Generating $1"
-    filename=$(echo $1 | sed 's/.md/.html/')
-    cat static/header.html > $filename
-    $MARKDOWN $1 >> $filename
-    cat static/footer.html >> $filename
-    set_title $filename "$(get_title $1)"
+    filename=$(echo "$1" | sed 's/.md/.html/')
+    cat static/header.html > "$filename"
+    $MARKDOWN "$1" >> "$filename"
+    cat static/footer.html >> "$filename"
+    set_title "$filename" "$(get_title "$1")"
 }
 
 # Generate the blog. The index is generated as it generates the pages
